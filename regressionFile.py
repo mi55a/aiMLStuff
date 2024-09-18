@@ -3,7 +3,6 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.linear_model import LinearRegression
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
 
 # data from excel spreadsheet, divided by model and the actual values
 

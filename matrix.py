@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
 import matplotlib.pyplot as plt
-# data from excel 
+# data from excel sheet from class, ignore last comment, this data ain't the same as the other. Different data but in same excel sheet sorry :DD
 actual = np.array(
     [0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1])
 predicted = np.array(
