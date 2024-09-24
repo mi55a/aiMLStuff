@@ -15,61 +15,39 @@ model3_values = [1, 4, 9, 16, 25, 36, 51, 69, 89, 102, 126, 152, 171, 201, 233, 
 
 # mean absolute error calculated and printed 
 
-mae1 = mean_absolute_error(actual_values, model1_values)
-mae2 = mean_absolute_error(actual_values, model2_values)
-mae3 = mean_absolute_error(actual_values, model3_values)
-print("Mean Absolute Error: ", mae1)
-print("Mean Absolute Error: ", mae2)
-print("Mean Absolute Error: ", mae3)
 
-# array of the mae values
+# function for mean absolute error 
+def mean_error(actual_values, predicted_values):
+    mae = mean_absolute_error(actual_values, predicted_values)
+    print("Mean Absolute Error: ", mae)
+    return mae
+
+mae1 = mean_error(actual_values, model1_values)
+mae2 = mean_error(actual_values, model2_values)
+mae3 = mean_error(actual_values, model3_values)
 
 mae_values = [mae1, mae2, mae3]
-
-# converting array to numpy array 
 
 actual_valuesnp = np.array(actual_values)
 model1_valuesnp = np.array(model1_values)
 model2_valuesnp = np.array(model2_values)
 model3_valuesnp = np.array(model3_values)
 
-# root mean squared error calculated 
+# function for root mean squared error 
 
-rmse1 = np.sqrt(mean_squared_error(actual_valuesnp, model1_valuesnp))
-rmse2 = np.sqrt(mean_squared_error(actual_valuesnp, model2_valuesnp))
-rmse3 = np.sqrt(mean_squared_error(actual_valuesnp, model3_valuesnp))
+def root_squared_error(actual_values, predicted_values):
+    rmse = np.sqrt(mean_squared_error(actual_values, predicted_values))
+    print("Root Mean Squared Error(RMSE): ", rmse)
+    return rmse
 
-# values from by-hand calculation by looping 
-
-sum1 = 0
-sum2 = 0
-sum3 = 0
-for (y, x) in zip(actual_values, model1_values):
-    sq_diff = ((y - x) ** 2)
-    sum1 += sq_diff
-for (y, x) in zip(actual_values, model2_values):
-    sq_diff2 = ((y - x) **2)
-    sum2 += sq_diff2
-for (y, x) in zip(actual_values, model3_values):
-    sq_diff3 = ((y - x) **2)
-    sum3 += sq_diff3
-
-# array of rmse values 
+rmse1 = root_squared_error(actual_valuesnp, model1_valuesnp)
+rmse2 = root_squared_error(actual_valuesnp, model2_valuesnp)
+rmse3 = root_squared_error(actual_valuesnp, model3_valuesnp)
 
 rmseValues = [rmse1, rmse2, rmse3]
 
-# labels for bar graph
-
 models_labels = ['Model 1', 'Model 2', 'Model 3']
 
-# printing 
-
-print(sum1)
-print(sum2)
-print(sum3)
-print("Root Mean Squared Error(RMSE): ", rmse1)
-print("Root Mean Squared Error(RMSE): ", rmse2)
-print("Root Mean Squared Error(RMSE): ", rmse3)
 
 # Grouped bar graph
 
@@ -101,6 +79,3 @@ ax.set_ylim(0,20)
 plt.show()
 
 # Can't change bar colors :(
-
-
-
