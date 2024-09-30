@@ -18,8 +18,9 @@ print(f"{inputFromUser} is your element. Your other element is not {inputFromUse
 def rand_cm(user_elements):
     for x in range(16):
         actual_values.append(randint(0,1))
-    for x in range(16):
         predicted_values.append(randint(0,1))
+   
+        
 
     print("Array of actual values:", actual_values)
     print("Array of predicted values:", predicted_values)
