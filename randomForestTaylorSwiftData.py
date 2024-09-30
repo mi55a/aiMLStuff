@@ -1,5 +1,6 @@
 
 # Important libraries for the program 
+# Spotify data (taylor_swift_spotify_data.csv) is thanks to adashofdata on Github! 
 
 import pandas as pd
 import matplotlib.pyplot as plt
