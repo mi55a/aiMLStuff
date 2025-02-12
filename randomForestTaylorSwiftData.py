@@ -61,12 +61,12 @@ print(f"Accuracy: {accurate:.2f}")
 
 print(classification_report(y_test, y_pred))
 
-
-
 # Confusion matrix hehe
 
 cm = confusion_matrix(y_test, y_pred)
 arrayCm = np.array(cm)
+
+# Confusion matrix results 
 
 TP = arrayCm[1,1] # True and True
 FP = arrayCm[0,1] # False and True
