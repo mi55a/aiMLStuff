@@ -5,9 +5,10 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, mean_squared_error, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # Classifies if a song is a hit or not hit (energy) based on danceability and loudness 
 
@@ -31,13 +32,16 @@ df_swift['DanceabilityClass'] = df_swift['Danceability'].apply(lambda x: 1 if x 
 
 df_swift['LoudnessEnergy'] = df_swift['Loudness'].apply(lambda l: 1 if l >= -4.00 else 0)
 
+df_swift['TempoLabel'] = df_swift['Tempo'].apply(lambda t: 1 if t >= 130.00 else 0)
+
+
 df_swift['HitClassification'] = df_swift['Energy'].apply(lambda y: 1 if y >= .400 else 0)
 
-X = df_swift[['DanceabilityClass', 'LoudnessEnergy']]
+X = df_swift[['DanceabilityClass', 'LoudnessEnergy', 'TempoLabel']]
 
 y = df_swift['HitClassification']
 
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=.4, random_state=42)
 
 # Random forest with 100 decision trees (omg a forest!!!)
 
@@ -57,9 +61,24 @@ print(f"Accuracy: {accurate:.2f}")
 
 print(classification_report(y_test, y_pred))
 
+
+
 # Confusion matrix hehe
 
 cm = confusion_matrix(y_test, y_pred)
+arrayCm = np.array(cm)
+
+TP = arrayCm[1,1] # True and True
+FP = arrayCm[0,1] # False and True
+TN = arrayCm[0,0] # False and False
+FN = arrayCm[1,0] # True and False
+
+print(f"True Positive: {TP}")
+print(f"False Positive: {FP}")
+print(f"False Negative: {FN}")
+print(f"True Negative: {TN}")
+
+
 sns.heatmap(cm, annot=True, fmt="d", xticklabels=["Not Hit Song", "Hit Song"], yticklabels=["Not Hit Song", "Hit Song"])
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
